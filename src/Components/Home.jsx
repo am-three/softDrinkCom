@@ -14,8 +14,8 @@ const Home = () => {
                 {navIcon.map((icons, index) => (
                     <NavLink to={icons.to} >
 
-                        <li key={index} className="hover:shadow-lg">
-                            <button>
+                        <li key={index} >
+                            <button >
                                 {icons.icon}
                             </button>
                         </li>
