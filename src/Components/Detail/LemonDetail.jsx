@@ -1,6 +1,6 @@
 import React from 'react'
 
-const StrawBerryDetail = () => {
+const LemonDetail = () => {
     return (
         <div className='text-center bg-green-400'>
             <h3> This Page Will Be Developed Soon... </h3>
@@ -8,4 +8,4 @@ const StrawBerryDetail = () => {
     )
 }
 
-export default StrawBerryDetail
+export default LemonDetail

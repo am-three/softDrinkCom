@@ -1,11 +1,12 @@
 import React from 'react'
 
-const StrawBerryDetail = () => {
+const WaterMelonDetails = () => {
     return (
-        <div className='text-center bg-green-400'>
+        <div className='text-center bg-green-400 '>
+
             <h3> This Page Will Be Developed Soon... </h3>
         </div>
     )
 }
 
-export default StrawBerryDetail
+export default WaterMelonDetails

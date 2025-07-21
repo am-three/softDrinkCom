@@ -2,9 +2,12 @@ import './App.css'
 import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from 'react-router-dom'
 
 import RootLayout from './layouts/RootLayout'
+import DetailsLayout from './layouts/DetailsLayout'
 import Home from './Components/Home'
 import StrawBerryDetail from './Components/Detail/StrawBerryDetail'
-
+import OrangeDetail from './Components/Detail/OrangeDetail'
+import WaterMelonDetail from './Components/Detail/WaterMelonDetails'
+import LemonDetail from './Components/Detail/LemonDetail'
 
 
 const router = createBrowserRouter(
@@ -14,7 +17,13 @@ const router = createBrowserRouter(
     <Route path='/' element={<RootLayout />} >
 
       <Route path='/' element={<Home />} />
-      <Route path='strawberry' element={<StrawBerryDetail />} />
+
+      <Route path='details' element={<DetailsLayout />}>
+        <Route path='strawberryDetails' element={<StrawBerryDetail />} />
+        <Route path='orangeDetails' element={<OrangeDetail />} />
+        <Route path='waterMelonDetails' element={<WaterMelonDetail />} />
+        <Route path='lemonDetails' element={<LemonDetail />} />
+      </Route>
 
     </Route>
   )
