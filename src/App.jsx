@@ -3,6 +3,7 @@ import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } 
 
 import RootLayout from './layouts/RootLayout'
 import Home from './Components/Home'
+import StrawBerryDetail from './Components/Detail/StrawBerryDetail'
 
 
 
@@ -13,6 +14,7 @@ const router = createBrowserRouter(
     <Route path='/' element={<RootLayout />} >
 
       <Route path='/' element={<Home />} />
+      <Route path='strawberry' element={<StrawBerryDetail />} />
 
     </Route>
   )
