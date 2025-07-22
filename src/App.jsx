@@ -8,7 +8,7 @@ import StrawBerryDetail from './Components/Detail/StrawBerryDetail'
 import OrangeDetail from './Components/Detail/OrangeDetail'
 import WaterMelonDetail from './Components/Detail/WaterMelonDetails'
 import LemonDetail from './Components/Detail/LemonDetail'
-
+import Music from './Components/NavPgs.jsx/Music'
 
 const router = createBrowserRouter(
 
@@ -17,6 +17,7 @@ const router = createBrowserRouter(
     <Route path='/' element={<RootLayout />} >
 
       <Route path='/' element={<Home />} />
+      <Route path='muzic' element={<Music />} />
 
       <Route path='details' element={<DetailsLayout />}>
         <Route path='strawberryDetails' element={<StrawBerryDetail />} />
@@ -34,7 +35,9 @@ const App = () => {
   return (
     <>
 
-      <RouterProvider router={router} />
+      <div style={{ cursor: "url('/cursor/cursor.png'), auto" }}>
+        <RouterProvider router={router} />
+      </div>
 
     </>
 

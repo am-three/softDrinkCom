@@ -45,10 +45,12 @@ const Home = () => {
                     {navIcon.map((icons, index) => (
                         <NavLink to={icons.to} >
 
-                            <li key={index} >
-                                <button className="duration-300 hover:scale-x-125">
-                                    {icons.icon}
-                                </button>
+                            <li key={index} className={`duration-300 hover:scale-x-125 
+                                ${icons.special ? 'hover:text-[#FF0032]' : ''
+                                }`}>
+
+                                {icons.icon}
+
                             </li>
 
                         </NavLink>
