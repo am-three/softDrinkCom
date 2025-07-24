@@ -1,22 +1,107 @@
-import React from 'react'
-import { useNavigate } from 'react-router-dom'
+import React, { useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+const playlist = [
+    { title: 'MM3', src: '/music/SoFaygo-MM3.mp3' },
+    { title: 'Sorry Bout That', src: '/music/YEATSORRYBOUTTHAT.mp3' },
+    { title: 'Hell Yeah', src: '/music/SoFaygoHellYeahFtKenCarson.mp3' },
+    { title: 'FWU', src: '/music/DonToliver-FWU.mp3' },
+    { title: 'There He Go', src: '/music/SosocamoThereHeGo.mp3' },
+];
 
 const Music = () => {
+    const audioRef = useRef(null);
+    const [currentIndex, setCurrentIndex] = useState(0);
 
     const navigate = useNavigate();
+
+    const playMusic = () => {
+        audioRef.current.play();
+    };
+
+    const pauseMusic = () => {
+        audioRef.current.pause();
+    };
+
+    const nextSong = () => {
+        setCurrentIndex((prevIndex) => (prevIndex + 1) % playlist.length);
+    };
+
+    const onEnded = () => {
+        nextSong();
+    };
+
     return (
 
+        <div>
 
-        <div className=''>
-            <h3> did u hear soemthing? </h3>
+            <div className="absolute top-0 left-0 w-full h-full pointer-events-none overflow-hidden z-0">
 
-            <div className=' fixed bottom-16 right-[50%] tracking-widest'>
-                <button className='bg-[#FF0032] rounded-lg py-3 px-8 flex gap-3 justify-center items-center 
+                {[
+                    { size: 'w-16 h-16', color: 'bg-gradient-to-tr from-orange-300 to-red-600', top: 'top-[40%]', left: 'left-20', delay: 'animate-float' },
+                    { size: 'w-28 h-28', color: 'bg-gradient-to-br from-amber-300 to-red-500', top: 'top-[40%]', left: 'left-[160px]', delay: 'animate-float-delay' },
+                    { size: 'w-16 h-16', color: 'bg-gradient-to-br from-amber-300 to-red-500', top: 'top-[80%]', left: 'left-[270px]', delay: 'animate-float' },
+
+                    { size: 'w-20 h-20', color: 'bg-gradient-to-l from-yellow-300 to-amber-600', top: 'top-[95%]', left: 'left-[430px]', delay: 'animate-float-delay' },
+                    { size: 'w-16 h-16', color: 'bg-gradient-to-l from-yellow-300 to-amber-600', top: 'top-[28%]', left: 'left-[500px]', delay: 'animate-float' },
+                    { size: 'w-16 h-16', color: 'bg-gradient-to-l from-yellow-300 to-amber-600', top: 'top-[60%]', left: 'left-[590px]', delay: 'animate-float-delay' },
+
+                    { size: 'w-24 h-24', color: 'bg-gradient-to-tl from-orange-500 to-red-400', top: 'top-[40%]', right: 'right-[600px]', delay: 'animate-float' },
+                    { size: 'w-16 h-16', color: 'bg-gradient-to-br from-orange-600 to-red-300', top: 'top-[60%]', right: 'right-[430px]', delay: 'animate-float-delay' },
+
+
+                    { size: 'w-24 h-24', color: 'bg-gradient-to-bl from-lime-500 to-green-100', top: 'top-[35%]', right: 'right-[300px]', delay: 'animate-float' },
+                    { size: 'w-28 h-28', color: 'bg-gradient-to-bl from-lime-500 to-green-100', top: 'top-[35%]', right: 'right-[150px]', delay: 'animate-float' },
+                    { size: 'w-20 h-20', color: 'bg-gradient-to-b from-lime-300 to-green-400', top: 'top-[80%]', right: 'right-[30px]', delay: 'animate-float-delay' },
+                ].map((b, i) => (
+                    <div
+                        key={i}
+                        className={`absolute rounded-full blur-[9px] ${b.size} ${b.color} ${b.top} ${b.left || ''} ${b.right || ''} ${b.delay}`}
+                    ></div>
+                ))}
+
+            </div>
+
+            <div className="p-10   mt-[200px] backdrop-blur-md rounded-xl shadow-lg w-full">
+                <h2 className="text-xl font-bold mb-2 text-center">Now Playing:</h2>
+                <p className="text-center mb-4"> <i>{playlist[currentIndex].title}</i> </p>
+
+                <audio
+                    ref={audioRef}
+                    src={playlist[currentIndex].src}
+                    onEnded={onEnded}
+                    autoPlay
+                />
+
+                <div className="flex justify-center gap-4 mt-4 text-black">
+                    <button
+                        onClick={playMusic}
+                        className="px-4 py-2 bg-[#a2e880] rounded hover:bg-green-600"
+                    >
+                        Play
+                    </button>
+                    <button
+                        onClick={pauseMusic}
+                        className="px-4 py-2 bg-[#e6db6c] rounded hover:bg-yellow-400"
+                    >
+                        Pause
+                    </button>
+                    <button
+                        onClick={nextSong}
+                        className="px-4 py-2 bg-[#e65a5a] rounded hover:bg-red-600"
+                    >
+                        Next
+                    </button>
+                </div>
+            </div>
+            <div className='fixed bottom-16 right-[100px] tracking-widest'>
+                <button className='bg-[#d43737] rounded-lg py-3 px-8 flex gap-3 justify-center items-center 
                             transform transition duration-300
                              hover:scale-105
                               hover:bg-[#e8e5df]
                                hover:text-black
-                               hover:translate-x-5 '
+                               hover:translate-x-5
+                               hover:cursor-crosshair'
                     onClick={() => navigate('/')}
                 >
                     Back
@@ -24,8 +109,27 @@ const Music = () => {
                 </button>
             </div>
 
-        </div>
-    )
-}
 
-export default Music
+            <style>
+                {`
+                            @keyframes float {
+                                0%, 100% { transform: translateY(0px); }
+                                50% { transform: translateY(-150px); }
+                            }
+
+                            .animate-float {
+                                animation: float 6s ease-in-out infinite;
+                            }
+
+                            .animate-float-delay {
+                                animation: float 6s ease-in-out infinite;
+                                animation-delay: 3s;
+                            }
+                            `}
+            </style>
+
+        </div>
+    );
+};
+
+export default Music;
