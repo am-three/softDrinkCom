@@ -1,11 +1,22 @@
 import React, { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+// import { Activity } from 'lucide-react';
+import { Pause } from 'lucide-react';
+import { ArrowBigRightDash } from 'lucide-react';
+// import { SquarePlay } from 'lucide-react';
+import { Squircle } from 'lucide-react';
+
 const playlist = [
     { title: 'MM3', src: '/music/SoFaygo-MM3.mp3' },
     { title: 'Sorry Bout That', src: '/music/YEATSORRYBOUTTHAT.mp3' },
     { title: 'Hell Yeah', src: '/music/SoFaygoHellYeahFtKenCarson.mp3' },
     { title: 'FWU', src: '/music/DonToliver-FWU.mp3' },
+    { title: 'Best Friend', src: '/music/YoungThug-BestFriend.mp3' },
+    { title: 'Annihilate', src: '/music/MetroBoomin,SwaeLee,LilWayne,Offset-Annihilate.mp3' },
+    { title: 'Let U Know', src: '/music/LilUziVert-LetUKnow(ft. Playboi Carti).mp3' },
+    { title: 'LYFESTYLE', src: '/music/Yeat-LYFESTYLE(FEAT. LILDURK).mp3' },
+    { title: 'NO STYLIST', src: '/music/DestroyLonely-NOSTYLIST.mp3' },
     { title: 'There He Go', src: '/music/SosocamoThereHeGo.mp3' },
 ];
 
@@ -47,12 +58,12 @@ const Music = () => {
                     { size: 'w-16 h-16', color: 'bg-gradient-to-l from-yellow-300 to-amber-600', top: 'top-[60%]', left: 'left-[590px]', delay: 'animate-float-delay' },
 
                     { size: 'w-24 h-24', color: 'bg-gradient-to-tl from-orange-500 to-red-400', top: 'top-[40%]', right: 'right-[600px]', delay: 'animate-float' },
-                    { size: 'w-16 h-16', color: 'bg-gradient-to-br from-orange-600 to-red-300', top: 'top-[60%]', right: 'right-[430px]', delay: 'animate-float-delay' },
+                    { size: 'w-16 h-16', color: 'bg-gradient-to-br from-orange-600 to-red-300', top: 'top-[70%]', right: 'right-[430px]', delay: 'animate-float-delay' },
 
 
-                    { size: 'w-24 h-24', color: 'bg-gradient-to-bl from-lime-500 to-green-100', top: 'top-[35%]', right: 'right-[300px]', delay: 'animate-float' },
-                    { size: 'w-28 h-28', color: 'bg-gradient-to-bl from-lime-500 to-green-100', top: 'top-[35%]', right: 'right-[150px]', delay: 'animate-float' },
-                    { size: 'w-20 h-20', color: 'bg-gradient-to-b from-lime-300 to-green-400', top: 'top-[80%]', right: 'right-[30px]', delay: 'animate-float-delay' },
+                    { size: 'w-16 h-16', color: 'bg-gradient-to-bl from-lime-500 to-green-100', top: 'top-[35%]', right: 'right-[300px]', delay: 'animate-float' },
+                    { size: 'w-28 h-28', color: 'bg-gradient-to-bl from-lime-500 to-green-100', top: 'top-[55%]', right: 'right-[150px]', delay: 'animate-float-delay' },
+                    { size: 'w-20 h-20', color: 'bg-gradient-to-b from-lime-300 to-green-400', top: 'top-[80%]', right: 'right-[30px]', delay: 'animate-float' },
                 ].map((b, i) => (
                     <div
                         key={i}
@@ -73,24 +84,27 @@ const Music = () => {
                     autoPlay
                 />
 
-                <div className="flex justify-center gap-4 mt-4 text-black">
-                    <button
-                        onClick={playMusic}
-                        className="px-4 py-2 bg-[#a2e880] rounded hover:bg-green-600"
-                    >
-                        Play
-                    </button>
+                <div className="flex justify-center gap-16 mt-8 text-[#f5e8da] font-bold">
+
                     <button
                         onClick={pauseMusic}
-                        className="px-4 py-2 bg-[#e6db6c] rounded hover:bg-yellow-400"
+                        className="px-10 rounded hover:bg-yellow-400"
                     >
-                        Pause
+                        <Pause />
                     </button>
+
+                    <button
+                        onClick={playMusic}
+                        className="px-10 py-1 rounded hover:bg-green-600"
+                    >
+                        <Squircle />
+                    </button>
+
                     <button
                         onClick={nextSong}
-                        className="px-4 py-2 bg-[#e65a5a] rounded hover:bg-red-600"
+                        className="px-10 rounded hover:bg-red-600"
                     >
-                        Next
+                        <ArrowBigRightDash />
                     </button>
                 </div>
             </div>
@@ -114,7 +128,7 @@ const Music = () => {
                 {`
                             @keyframes float {
                                 0%, 100% { transform: translateY(0px); }
-                                50% { transform: translateY(-150px); }
+                                50% { transform: translateY(-300px); }
                             }
 
                             .animate-float {
@@ -122,8 +136,8 @@ const Music = () => {
                             }
 
                             .animate-float-delay {
-                                animation: float 6s ease-in-out infinite;
-                                animation-delay: 3s;
+                                animation: float 13s ease-in-out infinite;
+                                animation-delay: 15s;
                             }
                             `}
             </style>
