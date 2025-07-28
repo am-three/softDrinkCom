@@ -1,9 +1,11 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 // import { Activity } from 'lucide-react';
 import { Pause } from 'lucide-react';
-import { ArrowBigRightDash } from 'lucide-react';
+// import { ArrowBigRightDash } from 'lucide-react';
+import { ArrowRightToLine } from 'lucide-react';
+import { ArrowLeftToLine } from 'lucide-react';
 // import { SquarePlay } from 'lucide-react';
 import { Squircle } from 'lucide-react';
 
@@ -16,15 +18,37 @@ const playlist = [
     { title: 'Annihilate', src: '/music/MetroBoomin,SwaeLee,LilWayne,Offset-Annihilate.mp3' },
     { title: 'Let U Know', src: '/music/LilUziVert-LetUKnow(ft. Playboi Carti).mp3' },
     { title: 'LYFESTYLE', src: '/music/Yeat-LYFESTYLE(FEAT. LILDURK).mp3' },
+    { title: 'STARGAZING', src: '/music/Travis Scott-STARGAZING.mp3' },
     { title: 'NO STYLIST', src: '/music/DestroyLonely-NOSTYLIST.mp3' },
+    { title: 'FOMDJ', src: '/music/PlayboiCarti-FOMDJ.mp3' },
     { title: 'There He Go', src: '/music/SosocamoThereHeGo.mp3' },
 ];
 
 const Music = () => {
     const audioRef = useRef(null);
     const [currentIndex, setCurrentIndex] = useState(0);
+    const [progress, setProgress] = useState(0);
 
     const navigate = useNavigate();
+
+
+    useEffect(() => {
+        const audio = audioRef.current;
+
+        const updateProgress = () => {
+            if (audio?.duration) {
+                const percent = (audio.currentTime / audio.duration) * 100;
+                setProgress(percent);
+            }
+        };
+
+        audio?.addEventListener("timeupdate", updateProgress);
+
+        return () => {
+            audio?.removeEventListener("timeupdate", updateProgress);
+        };
+    }, [currentIndex]);
+
 
     const playMusic = () => {
         audioRef.current.play();
@@ -32,6 +56,11 @@ const Music = () => {
 
     const pauseMusic = () => {
         audioRef.current.pause();
+    };
+
+    const previousSong = () => {
+        setCurrentIndex((prevIndex) => prevIndex === 0 ? playlist.length - 1 : prevIndex - 1)
+
     };
 
     const nextSong = () => {
@@ -84,38 +113,54 @@ const Music = () => {
                     autoPlay
                 />
 
-                <div className="flex justify-center gap-16 mt-8 text-[#f5e8da] font-bold">
+                <div className="w-full max-w-xl mx-auto h-1 bg-gray-900 rounded-full mt-4 overflow-hidden">
+                    <div
+                        className="h-full bg-[#ded6d5] transition-all duration-300"
+                        style={{ width: `${progress}%` }}
+                    />
+                </div>
+
+                <div className="flex justify-center gap-10 mt-8 text-[#f5e8da] font-bold">
+
+
+                    <button
+                        onClick={previousSong}
+                        className="px-10 rounded hover:bg-[#b5a19f]"
+                    >
+                        <ArrowLeftToLine />
+                    </button>
 
                     <button
                         onClick={pauseMusic}
-                        className="px-10 rounded hover:bg-yellow-400"
+                        className="px-10 rounded hover:bg-[#b5a19f]"
                     >
                         <Pause />
                     </button>
 
                     <button
                         onClick={playMusic}
-                        className="px-10 py-1 rounded hover:bg-green-600"
+                        className="px-10 py-1 rounded hover:bg-[#b5a19f]"
                     >
                         <Squircle />
                     </button>
 
                     <button
                         onClick={nextSong}
-                        className="px-10 rounded hover:bg-red-600"
+                        className="px-10 rounded hover:bg-[#b5a19f]"
                     >
-                        <ArrowBigRightDash />
+                        <ArrowRightToLine />
                     </button>
+
                 </div>
             </div>
+
             <div className='fixed bottom-16 right-[100px] tracking-widest'>
                 <button className='bg-[#d43737] rounded-lg py-3 px-8 flex gap-3 justify-center items-center 
                             transform transition duration-300
                              hover:scale-105
                               hover:bg-[#e8e5df]
                                hover:text-black
-                               hover:translate-x-5
-                               hover:cursor-crosshair'
+                               hover:translate-x-5'
                     onClick={() => navigate('/')}
                 >
                     Back
