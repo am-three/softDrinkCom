@@ -18,7 +18,9 @@ const playlist = [
     { title: 'Annihilate', src: '/music/MetroBoomin,SwaeLee,LilWayne,Offset-Annihilate.mp3' },
     { title: 'Let U Know', src: '/music/LilUziVert-LetUKnow(ft. Playboi Carti).mp3' },
     { title: 'LYFESTYLE', src: '/music/Yeat-LYFESTYLE(FEAT. LILDURK).mp3' },
+    { title: 'His & Hers', src: '/music/Internet Money-His&HersFeat.DonToliver,LilUziVert&Gunna.mp3' },
     { title: 'STARGAZING', src: '/music/Travis Scott-STARGAZING.mp3' },
+    { title: 'P2', src: '/music/LilUziVert-P2.mp3' },
     { title: 'NO STYLIST', src: '/music/DestroyLonely-NOSTYLIST.mp3' },
     { title: 'FOMDJ', src: '/music/PlayboiCarti-FOMDJ.mp3' },
     { title: 'There He Go', src: '/music/SosocamoThereHeGo.mp3' },
@@ -113,40 +115,40 @@ const Music = () => {
                     autoPlay
                 />
 
-                <div className="w-full max-w-xl mx-auto h-1 bg-gray-900 rounded-full mt-4 overflow-hidden">
+                <div className="w-full max-w-xl mx-auto h-1 bg-gray-300  mt-4 overflow-hidden">
                     <div
-                        className="h-full bg-[#ded6d5] transition-all duration-300"
+                        className="h-full bg-[#121212] transition-all duration-300"
                         style={{ width: `${progress}%` }}
                     />
                 </div>
 
-                <div className="flex justify-center gap-10 mt-8 text-[#f5e8da] font-bold">
+                <div className="flex justify-center gap-28 mt-8 text-[#f5e8da] font-bold">
 
 
                     <button
                         onClick={previousSong}
-                        className="px-10 rounded hover:bg-[#b5a19f]"
+                        className="rounded hover:-translate-x-3 hover:text-[#89ad34]"
                     >
                         <ArrowLeftToLine />
                     </button>
 
                     <button
                         onClick={pauseMusic}
-                        className="px-10 rounded hover:bg-[#b5a19f]"
+                        className="rounded hover:-translate-y-1"
                     >
                         <Pause />
                     </button>
 
                     <button
                         onClick={playMusic}
-                        className="px-10 py-1 rounded hover:bg-[#b5a19f]"
+                        className="rounded hover:-translate-y-1"
                     >
                         <Squircle />
                     </button>
 
                     <button
                         onClick={nextSong}
-                        className="px-10 rounded hover:bg-[#b5a19f]"
+                        className="rounded hover:translate-x-3 hover:text-[#89ad34]"
                     >
                         <ArrowRightToLine />
                     </button>
