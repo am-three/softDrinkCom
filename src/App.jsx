@@ -9,6 +9,7 @@ import OrangeDetail from './Components/Detail/OrangeDetail'
 import WaterMelonDetail from './Components/Detail/WaterMelonDetails'
 import LemonDetail from './Components/Detail/LemonDetail'
 import Music from './Components/NavPgs.jsx/Music'
+import SignUp from './Components/SignUp'
 
 const router = createBrowserRouter(
 
@@ -18,6 +19,7 @@ const router = createBrowserRouter(
 
       <Route path='/' element={<Home />} />
       <Route path='muzic' element={<Music />} />
+      <Route path='signup' element={<SignUp />} />
 
       <Route path='details' element={<DetailsLayout />}>
         <Route path='strawberryDetails' element={<StrawBerryDetail />} />

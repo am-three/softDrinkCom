@@ -59,3 +59,35 @@ canvas {
         typing 4s steps(20, end) forwards,
         blink 0.8s step-end infinite;
 }
+
+.imgBdr {
+    animation: morph 10s ease-in-out infinite;
+}
+
+@keyframes morph {
+    0% {
+        border-radius: 30% 70% / 80% 50%;
+    }
+
+    50% {
+        border-radius: 60% 40% / 30% 70%;
+    }
+
+    100% {
+        border-radius: 30% 70% / 80% 50%;
+    }
+}
+
+
+
+/* sign in ----------------------- */
+
+.input:hover {
+    box-shadow: 0 0 5px rgba(232, 224, 216, 0.923);
+    font-size: 15px;
+}
+
+.signUp:hover {
+    text-decoration: underline;
+
+}

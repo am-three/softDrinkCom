@@ -28,8 +28,7 @@ const LemonDetail = () => {
                              hover:scale-105
                               hover:bg-[#e8e5df]
                                hover:text-black
-                               hover:translate-x-5
-                               hover:cursor-crosshair'
+                               hover:translate-x-5'
                     onClick={() => navigate('/')}
                 >
                     Back

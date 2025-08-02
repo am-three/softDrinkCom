@@ -39,19 +39,27 @@ const Home = () => {
 
 
         <div>
-            <nav className='fixed bottom-0 w-[70%] left-1/2 transform -translate-x-1/2 z-50  backdrop-blur-sm border-t border-[#d2d0caff]' >
+            <nav className='imgBdr fixed bottom-0 w-[70%] left-1/2 transform -translate-x-1/2 z-50
+              backdrop-blur-lg 
+              border-t border-[#d2d0caff] 
+              filter drop-shadow-[0px_0px_8px_#d2d1de]' >
 
-                <ul className=" flex justify-center space-x-36 px-10 py-4  text-[#c4c4c2]">
+                <ul className=" flex justify-center space-x-36 px-10 py-3  text-[#c4c4c2]">
                     {navIcon.map((icons, index) => (
                         <NavLink to={icons.to} >
 
-                            <li key={index} className={`duration-300 hover:scale-x-125 
+                            <button key={index} disabled={icons.disabled} className={`duration-300 hover:scale-x-110 
                                 ${icons.special ? 'hover:text-[#FF0032]' : ''
-                                }`}>
+                                } `}
+                                // title={icons.disabled ? '⚠️' : ''}
+                                style={{
+                                    cursor: icons.disabled ? 'help' : 'pointer'
+                                }}
+                            >
 
                                 {icons.icon}
 
-                            </li>
+                            </button>
 
                         </NavLink>
                     ))}
@@ -87,11 +95,11 @@ const Home = () => {
 
                 </div>
 
-                <div className="absolute z-10 top-[100px] left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                <div className="absolute z-10 top-[80px] left-1/2 transform -translate-x-1/2 -translate-y-1/2">
                     <img
                         src={logo}
                         alt="Company Logo"
-                        className={`w-[400px] object-contain transition duration-300
+                        className={`w-[500px] object-contain transition duration-300
                              ${hoverToCan1 ? 'filter drop-shadow-[0px_1px_3px_#f73131]' : ''}
                              ${hoverToCan2 ? 'filter drop-shadow-[0px_1px_3px_#f7ea31]' : ''}
                              ${hoverToCan3 ? 'filter drop-shadow-[0px_1px_3px_#fa3939]' : ''}
@@ -111,14 +119,21 @@ const Home = () => {
                     <div>
 
                         {hoverToCan1 ?
-                            (<img src={strawberryCan} alt='icon' className='w-[300px] object-cover transition-all duration-150 ease-in-out opacity-100 scale-110' />) :
-                            (<div className='relative w-[310px] h-[250px]' style={{ borderRadius: '30% 70% / 80% 50%', border: '3px solid #d2d0caff', }}>
-                                <img src={strawBerry} alt='icon' className='object-cover absolute -top-24 h-[400px] opacity-90' />
+                            (<img src={strawberryCan} alt='icon' className='w-[280px] object-cover transition-all duration-150 ease-in-out opacity-100 scale-110' />) :
+                            (<div className='imgBdr relative w-[310px] h-[250px]' style={{ borderRadius: '30% 70% / 80% 50%', border: '3px solid #d2d0caff', }}>
+                                <img src={strawBerry} alt='icon' className=' object-cover absolute -top-24 h-[400px] opacity-90' />
+
+                                <div className="absolute bottom-[-50px] w-full text-center px-4 ">
+                                    <h2 className="text-lg font-semibold text-[#9593b5] tracking-wider">
+                                        STRAWBERRY
+                                    </h2>
+                                </div>
+
                             </div>)
                         }
 
-                        <div className='flex justify-center mt-8 font-bold tracking-widest'>
-                            <a className='bg-black rounded-lg py-3 px-8 flex gap-3 justify-center items-center
+                        <div className='flex justify-center mt-20 font-bold tracking-widest'>
+                            <a className='bg-black rounded-lg py-2 px-5 flex gap-3 justify-center items-center
                              transform transition duration-300 
                              hover:scale-105 
                              hover:bg-[#e8e5df]
@@ -145,14 +160,21 @@ const Home = () => {
                     <div>
 
                         {hoverToCan2 ?
-                            (<img src={orangeCan} alt='icon' className='w-[300px] object-cover transition-all duration-150 ease-in-out opacity-100 scale-110' />) :
-                            (<div className='relative w-[310px] h-[250px]' style={{ borderRadius: '30% 70% / 50% 50%', border: '3px solid #d2d0caff' }}>
+                            (<img src={orangeCan} alt='icon' className='w-[280px] object-cover transition-all duration-150 ease-in-out opacity-100 scale-110' />) :
+                            (<div className='imgBdr relative w-[310px] h-[250px]' style={{ borderRadius: '30% 70% / 50% 50%', border: '3px solid #d2d0caff' }}>
                                 <img src={orange} alt='icon' className='object-cover absolute -top-16 h-[320px] opacity-98' />
+
+                                <div className="absolute bottom-[-50px] w-full text-center px-4 ">
+                                    <h2 className="text-lg font-semibold text-[#9593b5] tracking-wider">
+                                        ORANGE
+                                    </h2>
+                                </div>
+
                             </div>)
                         }
 
-                        <div className='flex justify-center mt-8 tracking-widest'>
-                            <button className='bg-black rounded-lg py-3 px-8 flex gap-3 justify-center items-center 
+                        <div className='flex justify-center mt-20 tracking-widest'>
+                            <button className='bg-black rounded-lg py-2 px-5 flex gap-3 justify-center items-center 
                             transform transition duration-300
                              hover:scale-105
                               hover:bg-[#e8e5df]
@@ -176,15 +198,22 @@ const Home = () => {
 
                     <div>
                         {hoverToCan3 ?
-                            (<img src={waterMelonCan} alt='icon' className='w-[300px] object-cover transition-all duration-150 ease-in-out opacity-100 scale-110' />) :
-                            (<div className='relative w-[310px] h-[250px]' style={{ borderRadius: '70% 20% / 50% 60%', border: '3px solid #d2d0caff' }}>
+                            (<img src={waterMelonCan} alt='icon' className='w-[280px] object-cover transition-all duration-150 ease-in-out opacity-100 scale-110' />) :
+                            (<div className='imgBdr relative w-[310px] h-[250px]' style={{ borderRadius: '70% 20% / 50% 60%', border: '3px solid #d2d0caff' }}>
                                 <img src={waterMelon} alt='icon' className='object-cover absolute -top-36 h-[390px]' />
+
+                                <div className="absolute bottom-[-50px] w-full text-center px-4 ">
+                                    <h2 className="text-lg font-semibold text-[#9593b5] tracking-wider">
+                                        WATERMELON
+                                    </h2>
+                                </div>
+
                             </div>)
                         }
 
 
-                        <div className='flex justify-center mt-8 tracking-widest'>
-                            <button className='bg-black rounded-lg py-3 px-8 flex gap-3 justify-center items-center 
+                        <div className='flex justify-center mt-20 tracking-widest'>
+                            <button className='bg-black rounded-lg py-2 px-5 flex gap-3 justify-center items-center 
                             transform transition duration-300 
                             hover:scale-105
                              hover:bg-[#e8e5df]
@@ -208,15 +237,22 @@ const Home = () => {
 
                     <div>
                         {hoverToCan4 ?
-                            (<img src={lemonCan} alt='icon' className='w-[300px] object-cover transition-all duration-150 ease-in-out opacity-100 scale-110' />) :
-                            (<div className='relative w-[310px] h-[250px] ' style={{ borderRadius: '30% 70% / 50% 50%', border: '3px solid #d2d0caff' }}>
+                            (<img src={lemonCan} alt='icon' className='w-[280px] object-cover transition-all duration-150 ease-in-out opacity-100 scale-110' />) :
+                            (<div className='imgBdr relative w-[310px] h-[250px] ' style={{ borderRadius: '30% 70% / 50% 50%', border: '3px solid #d2d0caff' }}>
                                 <img src={lemon} alt='icon' className='object-cover absolute -top-20 -left-3  h-[380px]' />
+
+                                <div className="absolute bottom-[-50px] w-full text-center px-4 ">
+                                    <h2 className="text-lg font-semibold text-[#9593b5] tracking-wider">
+                                        LEMON
+                                    </h2>
+                                </div>
+
                             </div>
                             )
                         }
 
-                        <div className='flex justify-center mt-8 tracking-widest'>
-                            <button className='bg-black rounded-lg py-3 px-8 flex gap-3 justify-center items-center 
+                        <div className='flex justify-center mt-20 tracking-widest'>
+                            <button className='bg-black rounded-lg py-2 px-5 flex gap-3 justify-center items-center 
                             transform transition duration-300
                              hover:scale-105
                               hover:bg-[#e8e5df]

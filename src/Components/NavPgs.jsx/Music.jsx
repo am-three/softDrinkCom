@@ -26,10 +26,16 @@ const playlist = [
     { title: 'There He Go', src: '/music/SosocamoThereHeGo.mp3' },
 ];
 
+
+
 const Music = () => {
     const audioRef = useRef(null);
     const [currentIndex, setCurrentIndex] = useState(0);
+
+
     const [progress, setProgress] = useState(0);
+
+    const barRef = useRef(null);
 
     const navigate = useNavigate();
 
@@ -38,18 +44,18 @@ const Music = () => {
         const audio = audioRef.current;
 
         const updateProgress = () => {
-            if (audio?.duration) {
-                const percent = (audio.currentTime / audio.duration) * 100;
-                setProgress(percent);
-            }
+            const percent = (audio.currentTime / audio.duration) * 100;
+            setProgress(percent);
         };
 
-        audio?.addEventListener("timeupdate", updateProgress);
+        audio?.addEventListener('timeupdate', updateProgress);
 
         return () => {
-            audio?.removeEventListener("timeupdate", updateProgress);
+            audio?.removeEventListener('timeupdate', updateProgress);
         };
-    }, [currentIndex]);
+    }, []);
+
+    // ---------------------------------------
 
 
     const playMusic = () => {
@@ -115,12 +121,37 @@ const Music = () => {
                     autoPlay
                 />
 
-                <div className="w-full max-w-xl mx-auto h-1 bg-gray-300  mt-4 overflow-hidden">
+                {/* <div className="w-full max-w-xl mx-auto h-1 bg-gray-300  mt-4 overflow-hidden">
+                        <div
+                            className="h-full bg-[#121212] transition-all duration-300"
+                            style={{ width: `${progress}%` }}
+                        />
+                    </div> */}
+
+                <div ref={barRef}
+                    onClick={(e) => {
+                        const rect = barRef.current.getBoundingClientRect();
+                        const clickX = e.clientX - rect.left;
+                        const percentage = clickX / rect.width;
+
+                        const audio = audioRef.current;
+                        if (audio?.duration) {
+                            audio.currentTime = percentage * audio.duration;
+                        }
+                    }}
+                    className='relative w-full max-w-xl mx-auto h-1 bg-gray-300  mt-4 overflow-hidden cursor-pointer'>
+
                     <div
                         className="h-full bg-[#121212] transition-all duration-300"
                         style={{ width: `${progress}%` }}
                     />
+                    <div
+                        className="absolute top-1/2 -translate-y-1/2 w-2 h-2 bg-[#cca712]"
+                        style={{ left: `calc(${progress}% - 5px)` }}
+                    />
+
                 </div>
+
 
                 <div className="flex justify-center gap-28 mt-8 text-[#f5e8da] font-bold">
 
