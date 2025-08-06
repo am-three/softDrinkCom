@@ -19,6 +19,17 @@ const SignIn = () => {
     const { session, signInUser } = UserAuth();
     console.log(session);
 
+    const checkUserExists = async (email) => {
+        const res = await fetch('https://softdrink-pi.vercel.app/api/check-user', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email }),
+        });
+
+        const data = await res.json();
+        return data.exists;
+    };
+
 
     const [passwordmatch, setPasswordmatch] = useState(false);
     const psw = password;
@@ -31,19 +42,31 @@ const SignIn = () => {
         setError('');
         setPasswordmatch(false);
 
-
+        // valid mail method check------
         const gmailRegex = /^[a-zA-Z0-9._%+-]+@(?:gmail\.com|googlemail\.com)$/;
         if (!gmailRegex.test(email)) {
             setError("Please enter a valid Email address");
             setLoading(false);
             return;
         }
-        const oldPassword = localStorage.getItem("signupPassword");
 
-        if (setPassword !== psw) {
+        const userExists = await checkUserExists(email);
+        if (!userExists) {
+            setError("Email not registered. Please sign up first.");
+            setTimeout(() => navigate('/signup'), 2000);
+            return;
+        }
+
+
+
+        // used psw check-----
+        const oldPassword = localStorage.getItem("signupPassword");
+        if (oldPassword && password !== psw) {
             setPasswordmatch(true);
         }
 
+
+        // sign in-----
         try {
             const result = await signInUser(email, password);
 

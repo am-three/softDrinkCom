@@ -22,8 +22,6 @@ const SignUp = () => {
 
     localStorage.setItem("signupPassword", password);
 
-
-
     const handleSignUp = async (e) => {
         e.preventDefault();
         setLoading(true);
