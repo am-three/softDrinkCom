@@ -7,7 +7,7 @@ import { Ellipsis } from 'lucide-react';
 
 export const navIcon = [
     { icon: <House />, to: '/' },
-    { icon: <Music2 />, to: 'muzic', special: true, disabled: true },
+    { icon: <Music2 />, to: 'muzic', special: true, protected: true },
     { icon: <ShoppingBasket />, to: '/' },
     { icon: <Ellipsis />, to: '/' },
 ];

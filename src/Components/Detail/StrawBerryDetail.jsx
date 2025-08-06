@@ -18,14 +18,14 @@ const StrawBerryDetail = () => {
                 </div>
 
                 <div className='animate-typing overflow-hidden border-r-4 border-black text-2xl mt-48 w-fit'>
-                    <p className='text-[#EEEEEF]'>
-                        There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.
+                    <p className='text-black'>
+                        Strawberry juice is a refreshing, naturally sweet beverage made by blending ripe strawberries into a smooth liquid. Rich in vitamin C, antioxidants, and essential nutrients, it offers a delicious way to boost immunity and support overall health. Its vibrant red color and tangy-sweet flavor make it perfect on its own or as a base for smoothies and cocktails. Whether served chilled on a hot day or added to recipes, strawberry juice is a wholesome, invigorating drink loved by all ages.
                     </p>
                 </div>
 
             </div>
 
-            <div className='fixed bottom-16 right-[100px] tracking-widest'>
+            {/* <div className='fixed bottom-16 right-[100px] tracking-widest'>
                 <button className='bg-black rounded-lg py-3 px-8 flex gap-3 justify-center items-center 
                             transform transition duration-300
                              hover:scale-105
@@ -37,7 +37,25 @@ const StrawBerryDetail = () => {
                     Back
 
                 </button>
+            </div> */}
+            <div className='fixed bottom-16 right-[100px] tracking-widest'>
+                <button className='rounded-lg py-1 px-6 flex gap-3 justify-center items-center 
+                   border-r
+                   hover:border-none   
+                   text-black              
+                   transform transition duration-300
+                   hover:scale-105
+                   hover:bg-[#575552]
+                    
+                   hover:translate-x-5'
+                    onClick={() => navigate('/')}
+                >
+                    Back
+
+                </button>
             </div>
+
+
 
         </div>
     )

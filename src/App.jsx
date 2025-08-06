@@ -1,4 +1,5 @@
 import './App.css'
+
 import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from 'react-router-dom'
 
 import RootLayout from './layouts/RootLayout'
@@ -10,16 +11,26 @@ import WaterMelonDetail from './Components/Detail/WaterMelonDetails'
 import LemonDetail from './Components/Detail/LemonDetail'
 import Music from './Components/NavPgs.jsx/Music'
 import SignUp from './Components/SignUp'
+import SignIn from './Components/SignIn'
 
-const router = createBrowserRouter(
+import { AuthContextProvider } from './Context/AuthContext'
+import PrivateRoute from './Components/PrivateRoute'
+
+
+export const router = createBrowserRouter(
 
   createRoutesFromElements(
 
     <Route path='/' element={<RootLayout />} >
 
       <Route path='/' element={<Home />} />
-      <Route path='muzic' element={<Music />} />
+
+      <Route path='muzic' element=<PrivateRoute>
+        <Music />
+      </PrivateRoute> />
+
       <Route path='signup' element={<SignUp />} />
+      <Route path='signin' element={<SignIn />} />
 
       <Route path='details' element={<DetailsLayout />}>
         <Route path='strawberryDetails' element={<StrawBerryDetail />} />
@@ -37,9 +48,14 @@ const App = () => {
   return (
     <>
 
-      <div style={{ cursor: "url('/cursor/cursor.png'), auto" }}>
-        <RouterProvider router={router} />
-      </div>
+      <AuthContextProvider>
+        <div className='cursor '
+        // style={{ cursor: "url('/cursor/icons8-cursor-30.png') 0 0, auto" }}
+        >
+          <RouterProvider router={router} />
+
+        </div>
+      </AuthContextProvider>
 
     </>
 

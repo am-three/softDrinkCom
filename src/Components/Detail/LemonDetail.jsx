@@ -17,24 +17,30 @@ const LemonDetail = () => {
                 </div>
 
                 <div className='animate-typing overflow-hidden border-r-4 border-black text-2xl mt-48 w-fit'>
-                    <p className='text-[#EEEEEF]'>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                    <p className='text-black'>
+                        Lemon juice is a tangy, citrusy liquid extracted from fresh lemons, known for its sharp flavor and refreshing aroma. Rich in vitamin C and antioxidants, it boosts the immune system, aids digestion, and acts as a natural detoxifier. Often used as a zesty ingredient in drinks, dressings, and marinades, lemon juice also makes a revitalizing beverage on its own when diluted with water and sweetened. Its bright taste and health benefits make it a versatile and invigorating addition to any diet.
+                    </p>
                 </div>
 
             </div>
 
             <div className='fixed bottom-16 right-[100px] tracking-widest'>
-                <button className='bg-black rounded-lg py-3 px-8 flex gap-3 justify-center items-center 
-                            transform transition duration-300
-                             hover:scale-105
-                              hover:bg-[#e8e5df]
-                               hover:text-black
-                               hover:translate-x-5'
+                <button className='rounded-lg py-1 px-6 flex gap-3 justify-center items-center 
+                   border-r
+                   hover:border-none  
+                   text-black
+                   transform transition duration-300
+                   hover:scale-105
+                   hover:bg-[#575552]
+                    
+                   hover:translate-x-5'
                     onClick={() => navigate('/')}
                 >
                     Back
 
                 </button>
             </div>
+
 
         </div>
     )

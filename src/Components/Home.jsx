@@ -11,7 +11,11 @@ import orangeCan from '../assets/orangeCan.png'
 import waterMelonCan from '../assets/waterMelonCan.png'
 import lemonCan from '../assets/lemonCan.png'
 
+import cart from '../assets/cart20.png'
+
 import logo from '../assets/originJuiceLogo.png'
+
+import { User } from 'lucide-react';
 
 
 import '../App.css'
@@ -21,6 +25,9 @@ import { CircleChevronRight } from 'lucide-react';
 
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+
+// import { UserAuth } from '../Context/AuthContext';
+import { UserAuth } from "../Context/AuthContext"
 
 
 import '../App.css'
@@ -35,26 +42,95 @@ const Home = () => {
     const navigate = useNavigate();
 
 
+    const { session, signOut } = UserAuth();
+
+    // console.log(session);
+    console.log("Session:", session);
+    console.log('user: ', session?.user?.email);
+
+    const handleSignOut = async (e) => {
+        // e.preventDefault()
+        try {
+            await signOut();
+            navigate('/');
+        } catch (err) {
+            console.error(err);
+        }
+        console.log("Sign out clicked");
+        console.log("session email", session?.user?.email);
+    }
+
+
+    // protected music---------
+    const handleProtectedRoute = (path) => {
+        if (path.protected && !session) {
+            alert('Sign In first');
+            // return;
+        } else {
+            navigate(path.path);
+        }
+    }
+
+
+
     return (
 
 
         <div>
+
+            <div className="absolute fixed right-[10px] mt-5 text-[10px]">
+                {session?.user?.email ? (
+                    <div className="w-full flex gap-1 p-2 bg-gradient-to-r from-orange-500 to-orange-800 text-transparent bg-clip-text ">
+                        <h3>{session.user.email}</h3>
+                        <span className="text-white ">
+                            <User className="h-[15px] w-[30px]" />
+                        </span>
+                    </div>
+
+                ) : (
+                    <div className="fixed right-5 mt-2 border-l z-50  ">
+                        <p onClick={() => navigate('/signin')}
+                            className="cursor-pointer  p-1 transform transaction hover:translate-x-2 duration-300 hover:bg-[#4b4d4b]">
+                            Log In
+                        </p>
+                    </div>
+                )}
+
+
+                {session?.user?.email &&
+                    <div className="fixed right-8 mt-2 border-r z-50">
+                        <p onClick={handleSignOut}
+                            className="cursor-pointer px-2 transform transaction hover:translate-x-2 duration-300">
+                            Sign Out
+                        </p>
+                    </div>
+                }
+
+            </div>
+
+
+
             <nav className='imgBdr fixed bottom-0 w-[70%] left-1/2 transform -translate-x-1/2 z-50
               backdrop-blur-lg 
               border-t border-[#d2d0caff] 
-              filter drop-shadow-[0px_0px_8px_#d2d1de]' >
+              filter drop-shadow-[0px_0px_15px_#d2d1de]' >
+
 
                 <ul className=" flex justify-center space-x-36 px-10 py-3  text-[#c4c4c2]">
                     {navIcon.map((icons, index) => (
-                        <NavLink to={icons.to} >
+                        <NavLink to={icons.to} key={index} >
 
-                            <button key={index} disabled={icons.disabled} className={`duration-300 hover:scale-x-110 
-                                ${icons.special ? 'hover:text-[#FF0032]' : ''
-                                } `}
-                                // title={icons.disabled ? '⚠️' : ''}
+                            <button key={index}
+                                disabled={icons.disabled}
+                                className={`duration-300 hover:scale-x-110 
+                                    ${icons.special ? 'hover:text-[#FF0032]' : ''} `
+                                }
+
                                 style={{
                                     cursor: icons.disabled ? 'help' : 'pointer'
                                 }}
+
+                                onClick={() => handleProtectedRoute(path)}
                             >
 
                                 {icons.icon}
@@ -68,8 +144,7 @@ const Home = () => {
 
             </nav>
 
-            <div className='heroContainer flex h-screen overflow-x-auto top-0 relative'>
-
+            <div className=' heroContainer flex h-screen overflow-x-auto top-0 relative'>
 
                 <div className="absolute top-0 left-0 w-full h-full pointer-events-none overflow-hidden z-0">
 
@@ -112,6 +187,8 @@ const Home = () => {
 
 
 
+                {/* --------------------can session------------------------- */}
+
                 <div className='bg-[]  w-screen flex justify-center items-center'
                     onMouseEnter={() => setHoverToCan1(true)}
                     onMouseLeave={() => setHoverToCan1(false)}>
@@ -119,9 +196,19 @@ const Home = () => {
                     <div>
 
                         {hoverToCan1 ?
-                            (<img src={strawberryCan} alt='icon' className='w-[280px] object-cover transition-all duration-150 ease-in-out opacity-100 scale-110' />) :
+                            (<div>
+                                <img src={strawberryCan} alt='icon' className='w-[280px] object-cover transition-all duration-150 ease-in-out opacity-100 scale-110' />
+                                <div className='w-full flex items-center justify-center text-center '>
+                                    <a href="#" className=" rounded-md px-3">
+                                        <img src={cart} alt='icon' />
+                                    </a>
+                                </div>
+
+                            </div>
+                            )
+                            :
                             (<div className='imgBdr relative w-[310px] h-[250px]' style={{ borderRadius: '30% 70% / 80% 50%', border: '3px solid #d2d0caff', }}>
-                                <img src={strawBerry} alt='icon' className=' object-cover absolute -top-24 h-[400px] opacity-90' />
+                                <img src={strawBerry} alt='icon' className=' object-cover absolute top-[10%] h-[220px] h-[100px] opacity-100' />
 
                                 <div className="absolute bottom-[-50px] w-full text-center px-4 ">
                                     <h2 className="text-lg font-semibold text-[#9593b5] tracking-wider">
@@ -129,22 +216,24 @@ const Home = () => {
                                     </h2>
                                 </div>
 
-                            </div>)
+                            </div>
+                            )
                         }
 
                         <div className='flex justify-center mt-20 font-bold tracking-widest'>
-                            <a className='bg-black rounded-lg py-2 px-5 flex gap-3 justify-center items-center
-                             transform transition duration-300 
-                             hover:scale-105 
-                             hover:bg-[#e8e5df]
-                              hover:text-black 
-                              hover:translate-x-5'
+
+                            <button className='group rounded-lg py-2 px-5 flex gap-3 justify-center items-center
+                             transform transition duration-300
+                             hover:bg-[#575552]
+                              hover:text-black '
                                 onClick={() => navigate('/details/strawberryDetails')}
                             >
 
                                 View Detail
-                                <CircleChevronRight />
-                            </a>
+                                <span className='transform transition duration-300 group-hover:translate-x-3'>
+                                    <CircleChevronRight />
+                                </span>
+                            </button>
                         </div>
 
 
@@ -160,9 +249,19 @@ const Home = () => {
                     <div>
 
                         {hoverToCan2 ?
-                            (<img src={orangeCan} alt='icon' className='w-[280px] object-cover transition-all duration-150 ease-in-out opacity-100 scale-110' />) :
+                            (<div>
+                                <img src={orangeCan} alt='icon' className='w-[280px] object-cover transition-all duration-150 ease-in-out opacity-100 scale-110' />
+                                <div className='w-full flex items-center justify-center text-center '>
+                                    <a href="#" className="rounded-md px-3">
+                                        <img src={cart} alt='icon' />
+                                    </a>
+                                </div>
+
+                            </div>
+                            )
+                            :
                             (<div className='imgBdr relative w-[310px] h-[250px]' style={{ borderRadius: '30% 70% / 50% 50%', border: '3px solid #d2d0caff' }}>
-                                <img src={orange} alt='icon' className='object-cover absolute -top-16 h-[320px] opacity-98' />
+                                <img src={orange} alt='icon' className='object-cover absolute -top-10 h-[330px] opacity-98' />
 
                                 <div className="absolute bottom-[-50px] w-full text-center px-4 ">
                                     <h2 className="text-lg font-semibold text-[#9593b5] tracking-wider">
@@ -174,16 +273,17 @@ const Home = () => {
                         }
 
                         <div className='flex justify-center mt-20 tracking-widest'>
-                            <button className='bg-black rounded-lg py-2 px-5 flex gap-3 justify-center items-center 
+                            <button className='group  rounded-lg py-2 px-5 flex gap-3 justify-center items-center 
                             transform transition duration-300
-                             hover:scale-105
-                              hover:bg-[#e8e5df]
-                               hover:text-black
-                               hover:translate-x-5 '
+                              hover:bg-[#575552]
+                               hover:text-black'
                                 onClick={() => navigate('/details/orangeDetails')}
                             >
                                 View Detail
-                                <CircleChevronRight />
+                                <span className='transform transition duration-300 group-hover:translate-x-3'>
+                                    <CircleChevronRight />
+                                </span>
+
                             </button>
                         </div>
 
@@ -198,9 +298,18 @@ const Home = () => {
 
                     <div>
                         {hoverToCan3 ?
-                            (<img src={waterMelonCan} alt='icon' className='w-[280px] object-cover transition-all duration-150 ease-in-out opacity-100 scale-110' />) :
+                            (<div>
+                                <img src={waterMelonCan} alt='icon' className='w-[280px] object-cover transition-all duration-150 ease-in-out opacity-100 scale-110' />
+                                <div className='w-full flex items-center justify-center text-center '>
+                                    <a href="#" className="rounded-md px-3">
+                                        <img src={cart} alt='icon' />
+                                    </a>
+                                </div>
+                            </div>
+                            )
+                            :
                             (<div className='imgBdr relative w-[310px] h-[250px]' style={{ borderRadius: '70% 20% / 50% 60%', border: '3px solid #d2d0caff' }}>
-                                <img src={waterMelon} alt='icon' className='object-cover absolute -top-36 h-[390px]' />
+                                <img src={waterMelon} alt='icon' className='object-cover absolute -top-30 h-[270px]' />
 
                                 <div className="absolute bottom-[-50px] w-full text-center px-4 ">
                                     <h2 className="text-lg font-semibold text-[#9593b5] tracking-wider">
@@ -213,17 +322,16 @@ const Home = () => {
 
 
                         <div className='flex justify-center mt-20 tracking-widest'>
-                            <button className='bg-black rounded-lg py-2 px-5 flex gap-3 justify-center items-center 
-                            transform transition duration-300 
-                            hover:scale-105
-                             hover:bg-[#e8e5df]
-                              hover:text-black
-                              hover:translate-x-5'
+                            <button className='group  rounded-lg py-2 px-5 flex gap-3 justify-center items-center 
+                            transform transition duration-300                             
+                             hover:bg-[#575552]
+                              hover:text-black'
                                 onClick={() => navigate('/details/waterMelonDetails')}
-
                             >
                                 View Detail
-                                <CircleChevronRight />
+                                <span className='transform transition duration-300 group-hover:translate-x-3'>
+                                    <CircleChevronRight />
+                                </span>
                             </button>
                         </div>
 
@@ -237,9 +345,20 @@ const Home = () => {
 
                     <div>
                         {hoverToCan4 ?
-                            (<img src={lemonCan} alt='icon' className='w-[280px] object-cover transition-all duration-150 ease-in-out opacity-100 scale-110' />) :
+                            (<div>
+                                <img src={lemonCan} alt='icon' className='w-[280px] object-cover transition-all duration-150 ease-in-out opacity-100 scale-110' />
+                                <div className='w-full flex items-center justify-center text-center '>
+                                    <a href="#" className="rounded-md px-3" title="hi" >
+                                        <img src={cart} alt='icon' />
+
+                                    </a>
+
+                                </div>
+                            </div>
+                            )
+                            :
                             (<div className='imgBdr relative w-[310px] h-[250px] ' style={{ borderRadius: '30% 70% / 50% 50%', border: '3px solid #d2d0caff' }}>
-                                <img src={lemon} alt='icon' className='object-cover absolute -top-20 -left-3  h-[380px]' />
+                                <img src={lemon} alt='icon' className='object-cover absolute -top-16 -left-3  h-[330px]' />
 
                                 <div className="absolute bottom-[-50px] w-full text-center px-4 ">
                                     <h2 className="text-lg font-semibold text-[#9593b5] tracking-wider">
@@ -251,17 +370,17 @@ const Home = () => {
                             )
                         }
 
-                        <div className='flex justify-center mt-20 tracking-widest'>
-                            <button className='bg-black rounded-lg py-2 px-5 flex gap-3 justify-center items-center 
-                            transform transition duration-300
-                             hover:scale-105
-                              hover:bg-[#e8e5df]
-                               hover:text-black
-                               hover:translate-x-5'
+                        <div className=' flex justify-center mt-20 tracking-widest'>
+                            <button className='group rounded-lg py-2 px-5 flex gap-3 justify-center items-center 
+                             transform transition duration-300                             
+                             hover:bg-[#575552]
+                              hover:text-black'
                                 onClick={() => navigate('details/lemonDetails')}
                             >
                                 View Detail
-                                <CircleChevronRight />
+                                <span className='transform transition duration-300 group-hover:translate-x-3'>
+                                    <CircleChevronRight />
+                                </span>
                             </button>
 
                         </div>
@@ -285,14 +404,14 @@ const Home = () => {
                                 animation: float 6s ease-in-out infinite;
                                 animation-delay: 3s;
                             }
-                            `}
+                    `}
                 </style>
 
             </div>
 
 
 
-        </div>
+        </div >
 
     )
 }

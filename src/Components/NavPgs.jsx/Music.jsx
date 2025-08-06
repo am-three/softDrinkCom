@@ -11,6 +11,7 @@ import { Squircle } from 'lucide-react';
 
 const playlist = [
     { title: 'MM3', src: '/music/SoFaygo-MM3.mp3' },
+    { title: 'Off The Meter', src: '/music/Ken Carson - Off The Meter ft Playboi Carti, Destroy Lonely.mp3' },
     { title: 'Sorry Bout That', src: '/music/YEATSORRYBOUTTHAT.mp3' },
     { title: 'Hell Yeah', src: '/music/SoFaygoHellYeahFtKenCarson.mp3' },
     { title: 'FWU', src: '/music/DonToliver-FWU.mp3' },
@@ -21,9 +22,10 @@ const playlist = [
     { title: 'His & Hers', src: '/music/Internet Money-His&HersFeat.DonToliver,LilUziVert&Gunna.mp3' },
     { title: 'STARGAZING', src: '/music/Travis Scott-STARGAZING.mp3' },
     { title: 'P2', src: '/music/LilUziVert-P2.mp3' },
+    { title: 'Energy', src: '/music/yung bans - energy.mp3' },
     { title: 'NO STYLIST', src: '/music/DestroyLonely-NOSTYLIST.mp3' },
     { title: 'FOMDJ', src: '/music/PlayboiCarti-FOMDJ.mp3' },
-    { title: 'There He Go', src: '/music/SosocamoThereHeGo.mp3' },
+    { title: 'there he go', src: '/music/SosocamoThereHeGo.mp3' },
 ];
 
 
@@ -188,12 +190,14 @@ const Music = () => {
             </div>
 
             <div className='fixed bottom-16 right-[100px] tracking-widest'>
-                <button className='bg-[#d43737] rounded-lg py-3 px-8 flex gap-3 justify-center items-center 
-                            transform transition duration-300
-                             hover:scale-105
-                              hover:bg-[#e8e5df]
-                               hover:text-black
-                               hover:translate-x-5'
+                <button className='rounded-lg py-1 px-6 flex gap-3 justify-center items-center 
+                   border-r
+                   hover:border-none                 
+                   transform transition duration-300
+                   hover:scale-105
+                   hover:bg-[#575552]
+                    
+                   hover:translate-x-5'
                     onClick={() => navigate('/')}
                 >
                     Back
