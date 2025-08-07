@@ -19,22 +19,19 @@ const SignIn = () => {
     const { session, signInUser } = UserAuth();
     console.log(session);
 
-    const checkUserExists = async (email) => {
-        const res = await fetch('https://softdrink-pi.vercel.app/api/check-user', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ email }),
-        });
+    // const checkUserExists = async (email) => {
+    //     const res = await fetch('https://softdrink-pi.vercel.app/api/check-user', {
+    //         method: 'POST',
+    //         headers: { 'Content-Type': 'application/json' },
+    //         body: JSON.stringify({ email }),
+    //     });
 
-        const data = await res.json();
-        return data.exists;
-    };
+    //     const data = await res.json();
+    //     return data.exists;
+    // };
 
 
     const [passwordmatch, setPasswordmatch] = useState(false);
-    const psw = password;
-
-
 
     const handleSignIn = async (e) => {
         e.preventDefault();
@@ -50,18 +47,19 @@ const SignIn = () => {
             return;
         }
 
-        const userExists = await checkUserExists(email);
-        if (!userExists) {
-            setError("Email not registered. Please sign up first.");
-            setTimeout(() => navigate('/signup'), 2000);
-            return;
-        }
+        // const userExists = await checkUserExists(email);
+        // if (!userExists) {
+        //     setError("Email not registered. Please sign up first.");
+        //     setTimeout(() => navigate('/signup'), 2000);
+        //     return;
+        // }
 
 
 
         // used psw check-----
+        const psw = setPassword;
         const oldPassword = localStorage.getItem("signupPassword");
-        if (oldPassword && password !== psw) {
+        if (oldPassword !== psw) {
             setPasswordmatch(true);
         }
 

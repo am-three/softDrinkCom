@@ -139,7 +139,6 @@ const SignUp = () => {
                     {error && <p className='text-red-600 text-center mt-5'> {error}! </p>}
 
 
-
                 </div>
 
 
