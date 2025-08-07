@@ -1,9 +1,26 @@
 import React from 'react'
 import waterMelonCan1 from '../../assets/waterMelonCan1.png'
 import { useNavigate } from 'react-router-dom'
+import { useState, useEffect } from 'react';
+
+const p = [
+    `Watermelon juice is a hydrating and subtly sweet beverage made from the flesh of ripe watermelons. With its high water content and natural electrolytes like potassium, it's an excellent choice for staying refreshed and energized, especially in hot weather.Rich in vitamins A, C, and antioxidants like lycopene, it supports skin health and hydration.Its light, crisp flavor and vibrant pink - red color make watermelon juice a favorite for cooling down and enjoying nature’s sweetness in a glass.`
+];
 
 
 const WaterMelonDetails = () => {
+
+    const [currentLine, setCurrentLine] = useState(0);
+
+    useEffect(() => {
+        if (currentLine < p.length - 1) {
+            const timer = setTimeout(() => {
+                setCurrentLine((prev) => prev + 1);
+            }, 2500);
+            return () => clearTimeout(timer);
+        }
+    }, [currentLine]);
+
 
     const navigate = useNavigate();
 
@@ -18,11 +35,28 @@ const WaterMelonDetails = () => {
                     <img src={waterMelonCan1} alt='orange can' className=' object-cover scale-150' />
                 </div>
 
-                <div className='animate-typing overflow-hidden border-r-4 border-black text-2xl mt-48 w-fit'>
-                    <p className='text-black'>
-                        Watermelon juice is a hydrating and subtly sweet beverage made from the flesh of ripe watermelons. With its high water content and natural electrolytes like potassium, it's an excellent choice for staying refreshed and energized, especially in hot weather. Rich in vitamins A, C, and antioxidants like lycopene, it supports skin health and hydration. Its light, crisp flavor and vibrant pink-red color make watermelon juice a favorite for cooling down and enjoying nature’s sweetness in a glass.
-                    </p>
+                <div className=' overflow-hidden border-r-4 border-black text-2xl mt-48 w-full'>
+                    <div className="text-black leading-relaxed ">
+                        {p.slice(0, currentLine + 1).map((line, i) => (
+                            <div key={i} className="animate-fadeIn">{line}</div>
+                        ))}
+                    </div>
+
+
                 </div>
+
+                <style>
+                    {`
+          @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(300px); }
+            to { opacity: 1; transform: translateY(0); }
+          }
+
+          .animate-fadeIn {
+            animation: fadeIn 3s ease-out;
+          }
+        `}
+                </style>
 
             </div>
 

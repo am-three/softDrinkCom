@@ -1,8 +1,23 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import lemonCan1 from '../../assets/lemonCan1.png'
 import { useNavigate } from 'react-router-dom'
 
+const p = [
+    'Lemon juice is a tangy, citrusy liquid extracted from fresh lemons, known for its sharp flavor and refreshing aroma. Rich in vitamin C and antioxidants, it boosts the immune system, Often used as a zesty ingredient in drinks, dressings, and marinades, lemon juice also makes a revitalizing beverage on its own when diluted with water and sweetened. Its bright taste and health benefits make it a versatile and invigorating addition to any diet.',
+];
+
 const LemonDetail = () => {
+
+    const [currentLine, setCurrentLine] = useState(0);
+
+    useEffect(() => {
+        if (currentLine < p.length - 1) {
+            const timer = setTimeout(() => {
+                setCurrentLine((prev) => prev + 1);
+            }, 2500);
+            return () => clearTimeout(timer);
+        }
+    }, [currentLine]);
 
     const navigate = useNavigate();
     return (
@@ -16,11 +31,28 @@ const LemonDetail = () => {
                     <img src={lemonCan1} alt='orange can' className=' object-cover scale-150' />
                 </div>
 
-                <div className='animate-typing overflow-hidden border-r-4 border-black text-2xl mt-48 w-fit'>
-                    <p className='text-black'>
-                        Lemon juice is a tangy, citrusy liquid extracted from fresh lemons, known for its sharp flavor and refreshing aroma. Rich in vitamin C and antioxidants, it boosts the immune system, aids digestion, and acts as a natural detoxifier. Often used as a zesty ingredient in drinks, dressings, and marinades, lemon juice also makes a revitalizing beverage on its own when diluted with water and sweetened. Its bright taste and health benefits make it a versatile and invigorating addition to any diet.
-                    </p>
+                <div className=' overflow-hidden border-r-4 border-black text-2xl mt-48 w-full'>
+                    <div className="text-black leading-relaxed ">
+                        {p.slice(0, currentLine + 1).map((line, i) => (
+                            <div key={i} className="animate-fadeIn">{line}</div>
+                        ))}
+                    </div>
+
+
                 </div>
+
+                <style>
+                    {`
+          @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(300px); }
+            to { opacity: 1; transform: translateY(0); }
+          }
+
+          .animate-fadeIn {
+            animation: fadeIn 3s ease-out;
+          }
+        `}
+                </style>
 
             </div>
 
