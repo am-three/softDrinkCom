@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { UserAuth } from '../Context/AuthContext'
-// import { pass } from 'three/tsl';
 import logo from '../assets/originJuiceLogo.png'
+import { supabase } from '../supabaseClient'
 
 import { CircleSlash2 } from 'lucide-react';
 
@@ -13,23 +13,28 @@ const SignIn = () => {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [error, setError] = useState('');
+    const [error, setError] = useState(null);
     const [loading, setLoading] = useState('');
 
     const { session, signInUser } = UserAuth();
     console.log(session);
 
-    // const checkUserExists = async (email) => {
-    //     const res = await fetch('https://softdrink-pi.vercel.app/api/check-user', {
-    //         method: 'POST',
-    //         headers: { 'Content-Type': 'application/json' },
-    //         body: JSON.stringify({ email }),
-    //     });
 
-    //     const data = await res.json();
-    //     return data.exists;
-    // };
+    const checkUserExists = async (email) => {
+        const { data, error } = await supabase
+            .from('profiles')
+            .select('email')
+            .eq('email', email)
+            .single();
 
+        if (error) {
+
+            console.log("Error checking user:", error.message);
+            return false;
+        }
+
+        return !!data;
+    };
 
     const [passwordmatch, setPasswordmatch] = useState(false);
 
@@ -47,13 +52,13 @@ const SignIn = () => {
             return;
         }
 
-        // const userExists = await checkUserExists(email);
-        // if (!userExists) {
-        //     setError("Email not registered. Please sign up first.");
-        //     setTimeout(() => navigate('/signup'), 2000);
-        //     return;
-        // }
-
+        // user check----
+        const userExists = await checkUserExists(email);
+        if (!userExists) {
+            setError("Email not registered. Please sign up first.");
+            setTimeout(() => navigate('/signup'), 2000);
+            return;
+        }
 
 
         // used psw check-----
@@ -177,6 +182,9 @@ const SignIn = () => {
                             Password is different from while you used to sign up!
                         </p>
                     )}
+                    {checkUserExists.error &&
+                        <p className='text--600 text-center yellow mt-5'> {error}! </p>
+                    }
 
 
 
