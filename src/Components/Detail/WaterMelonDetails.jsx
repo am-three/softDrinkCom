@@ -2,6 +2,7 @@ import React from 'react'
 import waterMelonCan1 from '../../assets/waterMelonCan1.png'
 import { useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react';
+import detaillogo from '../..//assets/originJuiceLogo.png'
 
 const p = [
     `Watermelon juice is a hydrating and subtly sweet beverage made from the flesh of ripe watermelons. With its high water content and natural electrolytes like potassium, it's an excellent choice for staying refreshed and energized, especially in hot weather.Rich in vitamins A, C, and antioxidants like lycopene, it supports skin health and hydration.Its light, crisp flavor and vibrant pink - red color make watermelon juice a favorite for cooling down and enjoying nature’s sweetness in a glass.`
@@ -27,9 +28,11 @@ const WaterMelonDetails = () => {
     return (
 
         <div>
-            <div className='bg bg-no-repeat bg-top bg-[#ED5746]  fixed flex items-center  w-screen h-screen'>
+            <div className='bg-[#ED5746] fixed flex items-center  w-screen h-screen'>
 
-                {/* <h3> This Page Will Be Developed Soon... </h3> */}
+                <div className='fixed -top-[40px]  w-screen left-[38%] '>
+                    <img src={detaillogo} />
+                </div>
 
                 <div className='mt-[-100px] w-1/2'>
                     <img src={waterMelonCan1} alt='orange can' className=' object-cover scale-150' />
@@ -41,7 +44,6 @@ const WaterMelonDetails = () => {
                             <div key={i} className="animate-fadeIn">{line}</div>
                         ))}
                     </div>
-
 
                 </div>
 

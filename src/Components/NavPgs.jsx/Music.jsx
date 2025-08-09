@@ -34,7 +34,6 @@ const Music = () => {
     const audioRef = useRef(null);
     const [currentIndex, setCurrentIndex] = useState(0);
 
-
     const [progress, setProgress] = useState(0);
 
     const barRef = useRef(null);
@@ -112,7 +111,7 @@ const Music = () => {
 
             </div>
 
-            <div className="p-10   mt-[200px] backdrop-blur-md rounded-xl shadow-lg w-full">
+            <div className={`fixed transition-all p-10  mt-[200px] backdrop-blur-md rounded-xl shadow-lg w-full `}>
                 <h2 className="text-xl font-bold mb-2 text-center">Now Playing:</h2>
                 <p className="text-center mb-4"> <i>{playlist[currentIndex].title}</i> </p>
 
@@ -130,6 +129,8 @@ const Music = () => {
                         />
                     </div> */}
 
+
+                {/* bar */}
                 <div ref={barRef}
                     onClick={(e) => {
                         const rect = barRef.current.getBoundingClientRect();
@@ -155,6 +156,7 @@ const Music = () => {
                 </div>
 
 
+                {/* button */}
                 <div className="flex justify-center gap-28 mt-8 text-[#f5e8da] font-bold">
 
 

@@ -60,8 +60,13 @@ const Home = () => {
         console.log("session email", session?.user?.email);
     }
 
+    const [showConfirm, setShowConfirm] = useState(false);
 
-    // protected music---------
+
+
+
+
+    // protected to music---------
     const handleProtectedRoute = (path) => {
         if (path.protected && !session) {
             alert('Sign In first');
@@ -99,7 +104,7 @@ const Home = () => {
 
                 {session?.user?.email &&
                     <div className="fixed right-8 mt-2 border-r z-50">
-                        <p onClick={handleSignOut}
+                        <p onClick={() => setShowConfirm(true)}
                             className="cursor-pointer px-2 transform transaction hover:translate-x-2 duration-300">
                             Sign Out
                         </p>
@@ -197,7 +202,7 @@ const Home = () => {
 
                         {hoverToCan1 ?
                             (<div>
-                                <img src={strawberryCan} alt='icon' className='w-[280px] object-cover transition-all duration-150 ease-in-out opacity-100 scale-110' />
+                                <img src={strawberryCan} alt='icon' className='w-[280px] object-cover transition-all duration-1000 ease-in-out opacity-100 scale-110' />
                                 <div className='w-full flex items-center justify-center text-center '>
                                     <a href="#" className=" rounded-md px-3">
                                         <img src={cart} alt='icon' />
@@ -208,7 +213,7 @@ const Home = () => {
                             )
                             :
                             (<div className='imgBdr relative w-[310px] h-[250px]' style={{ borderRadius: '30% 70% / 80% 50%', border: '3px solid #d2d0caff', }}>
-                                <img src={strawBerry} alt='icon' className=' object-cover absolute top-[10%] h-[220px] h-[100px] opacity-100' />
+                                <img src={strawBerry} alt='icon' className=' object-cover absolute top-[10%] h-[220px] h-[100px] transition-all duration-700 ease-out' />
 
                                 <div className="absolute bottom-[-50px] w-full text-center px-4 ">
                                     <h2 className="text-lg font-semibold text-[#9593b5] tracking-wider">
@@ -250,7 +255,7 @@ const Home = () => {
 
                         {hoverToCan2 ?
                             (<div>
-                                <img src={orangeCan} alt='icon' className='w-[280px] object-cover transition-all duration-150 ease-in-out opacity-100 scale-110' />
+                                <img src={orangeCan} alt='icon' className='w-[280px] object-cover transition-all duration-1000 ease-in-out opacity-100 scale-110' />
                                 <div className='w-full flex items-center justify-center text-center '>
                                     <a href="#" className="rounded-md px-3">
                                         <img src={cart} alt='icon' />
@@ -261,7 +266,7 @@ const Home = () => {
                             )
                             :
                             (<div className='imgBdr relative w-[310px] h-[250px]' style={{ borderRadius: '30% 70% / 50% 50%', border: '3px solid #d2d0caff' }}>
-                                <img src={orange} alt='icon' className='object-cover absolute -top-10 h-[330px] opacity-98' />
+                                <img src={orange} alt='icon' className='object-cover absolute -top-10 h-[330px]  transition-all duration-700 ease-out' />
 
                                 <div className="absolute bottom-[-50px] w-full text-center px-4 ">
                                     <h2 className="text-lg font-semibold text-[#9593b5] tracking-wider">
@@ -299,7 +304,7 @@ const Home = () => {
                     <div>
                         {hoverToCan3 ?
                             (<div>
-                                <img src={waterMelonCan} alt='icon' className='w-[280px] object-cover transition-all duration-150 ease-in-out opacity-100 scale-110' />
+                                <img src={waterMelonCan} alt='icon' className='w-[280px] object-cover transition-all duration-1000 ease-in-out opacity-100 scale-110' />
                                 <div className='w-full flex items-center justify-center text-center '>
                                     <a href="#" className="rounded-md px-3">
                                         <img src={cart} alt='icon' />
@@ -309,7 +314,7 @@ const Home = () => {
                             )
                             :
                             (<div className='imgBdr relative w-[310px] h-[250px]' style={{ borderRadius: '70% 20% / 50% 60%', border: '3px solid #d2d0caff' }}>
-                                <img src={waterMelon} alt='icon' className='object-cover absolute -top-30 h-[270px]' />
+                                <img src={waterMelon} alt='icon' className='object-cover absolute -top-30 h-[270px] transition-all duration-700 ease-out' />
 
                                 <div className="absolute bottom-[-50px] w-full text-center px-4 ">
                                     <h2 className="text-lg font-semibold text-[#9593b5] tracking-wider">
@@ -346,7 +351,7 @@ const Home = () => {
                     <div>
                         {hoverToCan4 ?
                             (<div>
-                                <img src={lemonCan} alt='icon' className='w-[280px] object-cover transition-all duration-150 ease-in-out opacity-100 scale-110' />
+                                <img src={lemonCan} alt='icon' className='w-[280px] object-cover transition-all duration-1000 ease-in-out opacity-100 scale-110' />
                                 <div className='w-full flex items-center justify-center text-center '>
                                     <a href="#" className="rounded-md px-3" title="hi" >
                                         <img src={cart} alt='icon' />
@@ -357,8 +362,8 @@ const Home = () => {
                             </div>
                             )
                             :
-                            (<div className='imgBdr relative w-[310px] h-[250px] ' style={{ borderRadius: '30% 70% / 50% 50%', border: '3px solid #d2d0caff' }}>
-                                <img src={lemon} alt='icon' className='object-cover absolute -top-16 -left-3  h-[330px]' />
+                            (<div className='imgBdr relative w-[310px] h-[250px]' style={{ borderRadius: '30% 70% / 50% 50%', border: '3px solid #d2d0caff' }}>
+                                <img src={lemon} alt='icon' className='object-cover absolute -top-16 -left-3  h-[330px] transition-all duration-700 ease-out' />
 
                                 <div className="absolute bottom-[-50px] w-full text-center px-4 ">
                                     <h2 className="text-lg font-semibold text-[#9593b5] tracking-wider">
@@ -408,6 +413,38 @@ const Home = () => {
                 </style>
 
             </div>
+
+            {showConfirm && (
+                <div className="fixed inset-0 flex backdrop-blur-sm items-center justify-center bg-black/70 z-50">
+                    <div className="bg-transparent  rounded ">
+                        <h2 className="text-lg font-bold tracking-wide mb-4">
+                            Are you sure you want to sign out?
+                        </h2>
+
+                        <div className="flex justify-center items-center gap-10">
+
+                            <button
+                                onClick={() => {
+                                    setShowConfirm(false);
+                                    handleSignOut();
+                                }}
+                                className="px-4 py-2 bg-transparent rounded-md hover:scale-90"
+                            >
+                                Sign Out
+                            </button>
+
+
+                            <button
+                                onClick={() => setShowConfirm(false)}
+                                className="px-4 py-2 bg-transparent rounded-md hover:scale-90"
+                            >
+                                Cancel
+                            </button>
+
+                        </div>
+                    </div>
+                </div>
+            )}
 
 
 

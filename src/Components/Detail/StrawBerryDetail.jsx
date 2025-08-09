@@ -2,6 +2,7 @@ import React from 'react'
 import strawberryCan1 from '../../assets/strawberryCan1.png'
 import { useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react';
+import detaillogo from '../..//assets/originJuiceLogo.png'
 
 const p = [
     'Strawberry juice is a refreshing, naturally sweet beverage made by blending ripe strawberries into a smooth liquid. Rich in vitamin C, antioxidants, and essential nutrients, it offers a delicious way to boost immunity and support overall health. Its vibrant red color and tangy-sweet flavor make it perfect on its own or as a base for smoothies and cocktails. Whether served chilled on a hot day or added to recipes, strawberry juice is a wholesome, invigorating drink loved by all ages.',
@@ -26,11 +27,13 @@ const StrawBerryDetail = () => {
     return (
 
         <div>
-            <div className='bg bg-no-repeat bg-top bg-[#ED5746]  fixed flex items-center  w-screen h-screen'>
+            <div className='bg-[#ED5746] fixed flex items-center  w-screen h-screen'>
 
-                {/* <h3> This Page Will Be Developed Soon... </h3> */}
+                <div className='fixed -top-[40px]  w-screen left-[38%] '>
+                    <img src={detaillogo} />
+                </div>
 
-                <div className='mt-[-100px] w-1/2'>
+                <div className='mt-[-100px] w-1/2 flex justify-center items-center'>
                     <img src={strawberryCan1} alt='orange can' className=' object-cover scale-150' />
                 </div>
 

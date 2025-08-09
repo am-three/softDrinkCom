@@ -13,12 +13,14 @@ nav ul li:hover {
 }
 
 
-.bg {
+/* .bg {
     background-image: url(./assets/originJuiceLogo.png);
-}
+    display: flex;
+
+} */
 
 
-@keyframes typing {
+/* @keyframes typing {
     from {
         width: 0
     }
@@ -32,14 +34,14 @@ nav ul li:hover {
     50% {
         border-color: transparent
     }
-}
+} */
 
-.animate-typing {
+/* .animate-typing {
     width: 0;
     animation:
         typing 4s steps(20, end) forwards,
         blink 0.8s step-end infinite;
-}
+} */
 
 .imgBdr {
     animation: morph 10s ease-in-out infinite;

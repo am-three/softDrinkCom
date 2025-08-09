@@ -4,7 +4,7 @@ import { UserAuth } from '../Context/AuthContext'
 
 import { CircleSlash2 } from 'lucide-react';
 import logo from '../assets/originJuiceLogo.png'
-import { pass } from 'three/tsl';
+
 
 
 const SignUp = () => {
@@ -46,6 +46,19 @@ const SignUp = () => {
         } finally {
             setLoading(false);
         }
+
+        // google sign up
+        // const { error } = await supabase.auth.signInWithOAuth({
+        //     provider: "google",
+        //     options: {
+        //         redirectTo: window.location.origin,
+        //     },
+        // });
+
+        // if (error) {
+        //     console.error("Google Sign Up Error:", error.message);
+        //     setError("Google sign up failed");
+        // }
 
     };
 
@@ -127,6 +140,16 @@ const SignUp = () => {
                         <button disabled={loading} className=' w-full h-10 mt-5 font-bold text-lg hover:bg-[#e8e5df] hover:text-black hover:scale-110 duration-300 rounded' type='submit'>
                             Sign Up
                         </button>
+
+                        {/* <span className='text-center tracking-wide'> Or </span>
+
+                        <button
+                            type="button"
+                            onClick={handleSignUp}
+                            className="w-full h-10 mt-3 font-bold text-md bg-red-400 text-black hover:bg-red-500 hover:scale-110 duration-300 rounded"
+                        >
+                            Sign Up with Google
+                        </button> */}
 
 
                     </div>

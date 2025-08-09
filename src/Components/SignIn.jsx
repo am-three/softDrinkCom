@@ -55,7 +55,7 @@ const SignIn = () => {
         // user check----
         const userExists = await checkUserExists(email);
         if (!userExists) {
-            setError("Email not registered. Please sign up first.");
+            setError("Email not registered. Please sign up first");
             setTimeout(() => navigate('/signup'), 2000);
             return;
         }

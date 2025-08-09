@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import lemonCan1 from '../../assets/lemonCan1.png'
 import { useNavigate } from 'react-router-dom'
+import detaillogo from '../..//assets/originJuiceLogo.png'
 
 const p = [
     'Lemon juice is a tangy, citrusy liquid extracted from fresh lemons, known for its sharp flavor and refreshing aroma. Rich in vitamin C and antioxidants, it boosts the immune system, Often used as a zesty ingredient in drinks, dressings, and marinades, lemon juice also makes a revitalizing beverage on its own when diluted with water and sweetened. Its bright taste and health benefits make it a versatile and invigorating addition to any diet.',
@@ -21,11 +22,13 @@ const LemonDetail = () => {
 
     const navigate = useNavigate();
     return (
+        // bg - [#92C90C]
+        < div >
+            <div className='bg-[#92C90C] fixed flex items-center  w-screen h-screen'>
 
-        <div>
-            <div className='bg bg-no-repeat bg-top bg-[#92C90C]  fixed flex items-center  w-screen h-screen'>
-
-                {/* <h3> This Page Will Be Developed Soon... </h3> */}
+                <div className='fixed -top-[40px]  w-screen left-[38%] '>
+                    <img src={detaillogo} />
+                </div>
 
                 <div className='mt-[-100px] w-1/2'>
                     <img src={lemonCan1} alt='orange can' className=' object-cover scale-150' />
@@ -74,7 +77,7 @@ const LemonDetail = () => {
             </div>
 
 
-        </div>
+        </div >
     )
 }
 

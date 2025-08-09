@@ -2,6 +2,7 @@ import React from 'react'
 import orangeCan1 from '../../assets/orangeCan1.png'
 import { useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react';
+import detaillogo from '../..//assets/originJuiceLogo.png'
 
 const p = [
     'Orange juice is a bright, zesty drink made by extracting the liquid from fresh oranges. Packed with vitamin C, potassium, and antioxidants, it helps strengthen the immune system and support heart health. Its naturally sweet, tangy flavor makes it a popular breakfast staple and a refreshing thirst-quencher any time of day. Whether enjoyed freshly squeezed or as a base in smoothies and recipes, orange juice delivers a delicious boost of nutrition in every glass.',
@@ -27,7 +28,11 @@ const OrangeDetail = () => {
     return (
 
         <div>
-            <div className='bg bg-no-repeat bg-top bg-[#FFC63B]  fixed flex items-center  w-screen h-screen'>
+            <div className='bg-[#FCC33E] fixed flex items-center  w-screen h-screen'>
+
+                <div className='fixed -top-[40px]  w-screen left-[38%] '>
+                    <img src={detaillogo} />
+                </div>
 
 
                 <div className='mt-[-100px] w-1/2'>
