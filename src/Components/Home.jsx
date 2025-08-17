@@ -62,10 +62,6 @@ const Home = () => {
 
     const [showConfirm, setShowConfirm] = useState(false);
 
-
-
-
-
     // protected to music---------
     const handleProtectedRoute = (path) => {
         if (path.protected && !session) {
@@ -82,6 +78,8 @@ const Home = () => {
 
 
         <div>
+
+            <p className="absolute text-yellow-300 fixed left-[43%]"> responsive yet! desktop only </p>
 
             <div className="absolute fixed right-[10px] mt-5 text-[10px]">
                 {session?.user?.email ? (

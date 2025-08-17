@@ -153,6 +153,7 @@ const Music = () => {
                         style={{ left: `calc(${progress}% - 5px)` }}
                     />
 
+
                 </div>
 
 
